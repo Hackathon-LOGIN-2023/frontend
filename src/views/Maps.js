@@ -11,9 +11,7 @@ import CreateIssue from './CreateIssue';
 import {createAppContainer} from 'react-navigation';
 
 function Map({navigation}) {
-  const dims = Dimensions.get('window');
-  const h = dims.height;
-  const w = dims.width;
+  const {height, width} = Dimensions.get('window');
   return (
     <SafeAreaView style={{flex: 1}}>
       <MapView
@@ -26,27 +24,26 @@ function Map({navigation}) {
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={{
           flex: 1,
-          height: h,
-          width: w,
+          height: height,
+          width: width,
         }}>
         <Marker coordinate={{latitude: 37.78825, longitude: -122.4324}} />
       </MapView>
-      <Pressable
-        onPress={() => navigation.navigate('CreateIssue', {name: 'Jane'})}>
+      <Pressable onPress={() => navigation.navigate('CreateIssue')}>
         <View
           style={{
             position: 'absolute',
             bottom: 20,
             right: 20,
           }}>
-          <IconFA name="circle" size={w * 0.22} color="#EC8103" />
+          <IconFA name="circle" size={width * 0.22} color="#EC8103" />
           <View
             style={{
               position: 'absolute',
               top: '20%',
               alignSelf: 'center',
             }}>
-            <IconAD name="plus" size={w * 0.12} color="#fff" />
+            <IconAD name="plus" size={width * 0.12} color="#fff" />
           </View>
         </View>
       </Pressable>
