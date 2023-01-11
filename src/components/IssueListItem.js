@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
+import {URI_IMAGE} from '../consts/backend';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#E0E0E0',
   },
-  photo: {
+  image: {
     width: 75,
     height: 75,
     marginRight: 10,
@@ -26,7 +27,8 @@ export default function IssueListItem({issue, onPress}) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
-        {issue.photo && <Image source={issue.photo} style={styles.photo} />}
+        {/*{issue.image && <Image source={{uri: issue.image}} style={styles.image} />}*/}
+        {issue.image && <Image source={{uri: `${URI_IMAGE}${issue.image}`}} style={styles.image} />}
         <Text>{issue.title}</Text>
         <Icon name="arrow-forward" style={styles.icon} />
       </View>
