@@ -1,12 +1,22 @@
 import React, {useLayoutEffect} from 'react';
-import {ActivityIndicator, Button, Text, View} from 'react-native';
+import {ActivityIndicator, Button, Image, StyleSheet, Text, View} from 'react-native';
 import useIssue from '../hooks/useIssue';
+import {URI_IMAGE} from '../consts/backend';
+
+const styles = StyleSheet.create({
+  image: {
+    width: 100,
+    height: 100,
+    marginRight: 10,
+    resizeMode: 'contain',
+  },
+});
 
 export default function IssueDetail({navigation, route}) {
   const {issueId} = route.params;
   const {data: issue, isLoading, isSuccess} = useIssue({issueId});
 
-  useLayoutEffect(function() {
+  useLayoutEffect(function () {
     if (isSuccess) {
       navigation.setOptions({
         headerRight: () => (
@@ -35,6 +45,8 @@ export default function IssueDetail({navigation, route}) {
 
   return (
     <View>
+      {/*{issue.image && <Image source={{uri: issue.image}} style={styles.image} />}*/}
+      {issue.image && <Image source={{uri: `${URI_IMAGE}${issue.image}`}} style={styles.image} />}
       <Text>Id: {issue._id}</Text>
       <Text>Issue: {issue.title}</Text>
       <Text>Description: {issue.description}</Text>
