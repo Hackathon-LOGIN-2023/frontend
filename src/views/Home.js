@@ -1,12 +1,32 @@
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
+import useIssuesContext from '../hooks/useIssuesContext';
+import IssueListItem from '../components/IssueListItem';
 
-export default function Home() {
+export default function Home({navigation}) {
+  function handleOnPress({issueId}) {
+    navigation.navigate('IssueDetail', {
+      issueId: issueId,
+    });
+  }
+
+  const {isSuccess, isLoading, issues} = useIssuesContext();
+
   return (
-    <SafeAreaView>
-      <View>
-        <Text>Home View</Text>
-      </View>
-    </SafeAreaView>
+    <View>
+      <FlatList
+        data={isSuccess ? issues : []}
+        renderItem={({item}) => (
+          <IssueListItem
+            issue={item}
+            onPress={() => handleOnPress({issueId: item._id})}
+          />
+        )}
+        keyExtractor={item => item._id}
+        ListEmptyComponent={
+          <View>{isLoading && <Text>Loading issues...</Text>}</View>
+        }
+      />
+    </View>
   );
 }
