@@ -1,6 +1,6 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import {Form, FormItem, Picker} from 'react-native-form-component';
-import {View, Text} from 'react-native';
+import {createPicker} from '../consts/multiplechoice';
 
 export default function CreateIssue({navigation, route}) {
   const [title, setTitle] = useState('Title');
@@ -31,11 +31,7 @@ export default function CreateIssue({navigation, route}) {
         asterik
       />
       <Picker
-        items={[
-          {label: 'Low Impact', value: 1},
-          {label: 'Significant Impact', value: 2},
-          {label: 'Very High Impact', value: 3},
-        ]}
+        items={createPicker('severity')}
         label="Severity"
         selectedValue={severity}
         onSelection={item => setSeverity(item.value)}
@@ -43,13 +39,7 @@ export default function CreateIssue({navigation, route}) {
         asterik
       />
       <Picker
-        items={[
-          {label: 'Trash', value: 1},
-          {label: 'Traffic', value: 2},
-          {label: 'Public Property Damage', value: 3},
-          {label: 'Public Transport', value: 4},
-          {label: 'Other', value: 5},
-        ]}
+        items={createPicker('category')}
         label="Category"
         selectedValue={category}
         onSelection={item => setCategory(item.value)}
