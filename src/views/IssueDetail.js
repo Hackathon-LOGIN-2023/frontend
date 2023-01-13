@@ -1,7 +1,8 @@
-import React, {useLayoutEffect} from 'react';
+import React, {useLayoutEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Button,
+  Dimensions,
   Image,
   StyleSheet,
   Text,
@@ -12,9 +13,8 @@ import {URI_IMAGE} from '../consts/backend';
 
 const styles = StyleSheet.create({
   image: {
-    width: 100,
-    height: 100,
-    marginRight: 10,
+    marginTop: 10,
+    marginBottom: 10,
     resizeMode: 'contain',
   },
 });
@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
 export default function IssueDetail({navigation, route}) {
   const {issueId} = route.params;
   const {data: issue, isLoading, isSuccess} = useIssue({issueId});
+  const [imgRatio, setImgRatio] = useState(0);
+  const width = Dimensions.get('window').width;
 
   useLayoutEffect(function () {
     if (isSuccess) {
@@ -50,13 +52,21 @@ export default function IssueDetail({navigation, route}) {
     );
   }
 
+  Image.getSize(`${URI_IMAGE}${issue.image}`, (w, h) => {
+    setImgRatio(h / w);
+  });
+
   return (
     <View>
       {/*{issue.image && <Image source={{uri: issue.image}} style={styles.image} />}*/}
       {issue.image && (
         <Image
           source={{uri: `${URI_IMAGE}${issue.image}`}}
-          style={styles.image}
+          style={{
+            ...styles.image,
+            width: width,
+            height: imgRatio * width,
+          }}
         />
       )}
       <Text>Id: {issue._id}</Text>
