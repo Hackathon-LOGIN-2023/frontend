@@ -8,6 +8,7 @@ import IconAD from 'react-native-vector-icons/AntDesign';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CreateIssue from './CreateIssue';
 import {fetchData} from '../context/IssueContext';
+import IssueDetail from './IssueDetail';
 
 function Map({navigation}) {
   const {height, width} = Dimensions.get('window');
@@ -36,7 +37,13 @@ function Map({navigation}) {
           width: width,
         }}>
         {issues.map((issue, index) => (
-          <Marker key={index} coordinate={issue.location} />
+          <Marker
+            key={index}
+            coordinate={issue.location}
+            onPress={() =>
+              navigation.navigate('IssueDetail', {issueId: issue._id})
+            }
+          />
         ))}
       </MapView>
       <Pressable onPress={() => navigation.navigate('CreateIssue')}>
@@ -68,6 +75,7 @@ export default function Maps() {
     <Stack.Navigator>
       <Stack.Screen name="Map" component={Map} />
       <Stack.Screen name="CreateIssue" component={CreateIssue} />
+      <Stack.Screen name="IssueDetail" component={IssueDetail} />
     </Stack.Navigator>
   );
 }
