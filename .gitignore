@@ -64,3 +64,4 @@ buck-out/
 /vendor/bundle/
 
 android/app/src/main/AndroidManifest.xml
+.env
