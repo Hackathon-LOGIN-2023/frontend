@@ -1,21 +1,29 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {Dimensions, Pressable} from 'react-native';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import IconAD from 'react-native-vector-icons/AntDesign';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CreateIssue from './CreateIssue';
-import {createAppContainer} from 'react-navigation';
+import {fetchData} from '../context/IssueContext';
 
 function Map({navigation}) {
   const {height, width} = Dimensions.get('window');
+  const [issues, setIssues] = useState([]);
+
+  useEffect(() => {
+    const f = async () => {
+      setIssues(await fetchData());
+    };
+    f();
+  }, []);
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <MapView
-        initialRegion={{
+        region={{
           latitude: 37.78825,
           longitude: -122.4324,
           latitudeDelta: 0.0922,
@@ -27,7 +35,9 @@ function Map({navigation}) {
           height: height,
           width: width,
         }}>
-        <Marker coordinate={{latitude: 37.78825, longitude: -122.4324}} />
+        {issues.map((issue, index) => (
+          <Marker key={index} coordinate={issue.location} />
+        ))}
       </MapView>
       <Pressable onPress={() => navigation.navigate('CreateIssue')}>
         <View

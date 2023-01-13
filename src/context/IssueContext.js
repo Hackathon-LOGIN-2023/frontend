@@ -8,7 +8,7 @@ export default IssuesContext;
 const queryClient = new QueryClient();
 const GET_ISSUES = 'GET_ISSUES';
 
-async function fetchData() {
+export async function fetchData() {
   console.log('Trying to connect');
   const response = await fetch(`${ISSUES_URL}/issues/`);
   const json = await response.json();
