@@ -1,13 +1,13 @@
 import {QueryClient, useQuery} from 'react-query';
 import {useCallback} from 'react';
-import {BACKEND_URL} from '../consts/backend';
+import {ISSUES_URL} from '@env';
 
 const GET_ISSUE = 'GET_ISSUE';
 const queryClient = new QueryClient();
 
 export default function useIssue({issueId}) {
   async function fetchBook() {
-    const response = await fetch(`${BACKEND_URL}/issues/${issueId}`);
+    const response = await fetch(`${ISSUES_URL}/issues/${issueId}`);
     const json = await response.json();
     return json;
   }
@@ -17,7 +17,7 @@ export default function useIssue({issueId}) {
 
 export function useInvalidateIssue({issueId}) {
   const invalidateCache = useCallback(
-    function() {
+    function () {
       queryClient.invalidateQueries(GET_ISSUE, issueId);
     },
     [issueId],

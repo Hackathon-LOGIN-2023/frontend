@@ -3,7 +3,7 @@ import {ActivityIndicator, Button, Image, StyleSheet, Text, TextInput, View} fro
 import {useMutation} from 'react-query';
 import {launchImageLibrary} from 'react-native-image-picker';
 import useIssue from '../hooks/useIssue';
-import {BACKEND_URL, URI_IMAGE} from '../consts/backend';
+import {ISSUES_URL, URI_IMAGE} from '../consts/backend';
 
 const styles = StyleSheet.create({
   container: {
@@ -42,7 +42,7 @@ async function putData({id, data, image}) {
   const formData = new FormData();
   formData.append('data', JSON.stringify(data));
   // formData.append('image', image);
-  const response = await fetch(`${BACKEND_URL}/issues/${id}`, {
+  const response = await fetch(`${ISSUES_URL}/issues/${id}`, {
     method: 'PUT',
     body: formData,
     headers: {

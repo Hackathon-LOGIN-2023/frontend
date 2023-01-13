@@ -1,6 +1,6 @@
 import React, {createContext, useCallback, useMemo} from 'react';
 import {QueryClient, useQuery} from 'react-query';
-import {BACKEND_URL} from '../consts/backend';
+import {ISSUES_URL} from '@env';
 
 const IssuesContext = createContext();
 export default IssuesContext;
@@ -10,7 +10,7 @@ const GET_ISSUES = 'GET_ISSUES';
 
 async function fetchData() {
   console.log('Trying to conect');
-  const response = await fetch(`${BACKEND_URL}/issues/`);
+  const response = await fetch(`${ISSUES_URL}/issues/`);
   const json = await response.json();
   return json;
 }
@@ -18,7 +18,7 @@ async function fetchData() {
 export function IssueContextProvider({children}) {
   const {isSuccess, isLoading, data} = useQuery(GET_ISSUES, fetchData);
 
-  const invalidateIssuesListCache = useCallback(function() {
+  const invalidateIssuesListCache = useCallback(function () {
     queryClient.invalidateQueries(GET_ISSUES);
   }, []);
 

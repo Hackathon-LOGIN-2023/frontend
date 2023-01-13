@@ -1,5 +1,12 @@
 import React, {useLayoutEffect} from 'react';
-import {ActivityIndicator, Button, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Button,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import useIssue from '../hooks/useIssue';
 import {URI_IMAGE} from '../consts/backend';
 
@@ -46,7 +53,12 @@ export default function IssueDetail({navigation, route}) {
   return (
     <View>
       {/*{issue.image && <Image source={{uri: issue.image}} style={styles.image} />}*/}
-      {issue.image && <Image source={{uri: `${URI_IMAGE}${issue.image}`}} style={styles.image} />}
+      {issue.image && (
+        <Image
+          source={{uri: `${URI_IMAGE}${issue.image}`}}
+          style={styles.image}
+        />
+      )}
       <Text>Id: {issue._id}</Text>
       <Text>Issue: {issue.title}</Text>
       <Text>Description: {issue.description}</Text>
