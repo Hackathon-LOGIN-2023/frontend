@@ -1,5 +1,5 @@
 import Home from './Home';
-import MapStack from './Maps';
+import MapStack from './MapStack';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Logout from './Logout';

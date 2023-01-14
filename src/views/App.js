@@ -1,10 +1,30 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+
 import {QueryClient, QueryClientProvider} from 'react-query';
-import SwitchAuthScreen from './SwitchAuthScreen';
-import {AuthContextProvider} from '../context/AuthContext';
+import {Text, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+
+import MainScreen from './Main';
+import LoggedOutScreen from './LoggedOutScreen';
+import useAuthContext from '../hooks/useAuthContext';
+import {AuthContextProvider, LOADING, LOGGED_IN} from '../context/AuthContext';
 
 const queryClient = new QueryClient();
+
+function SwitchAuthScreen() {
+  const {loggedState} = useAuthContext();
+  if (loggedState === LOADING) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+  if (loggedState === LOGGED_IN) {
+    return <MainScreen />;
+  }
+  return <LoggedOutScreen />;
+}
 
 function App() {
   return (
