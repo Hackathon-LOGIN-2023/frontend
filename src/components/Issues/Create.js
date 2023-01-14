@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Form, FormItem, Picker} from 'react-native-form-component';
-import {createPicker} from '../consts/multiplechoice';
+import {createPicker} from '../../constants';
 
 export default function CreateIssue({navigation, route}) {
   const [title, setTitle] = useState('');
