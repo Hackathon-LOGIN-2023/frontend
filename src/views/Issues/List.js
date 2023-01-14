@@ -6,7 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import IssueDetail from './Detail';
 import IssueUpdate from './Update';
 import IssueListItem from '../../components/IssueListItem';
-import {ISSUE_DETAIL, ISSUE_EDIT, ISSUE_LIST} from '../../consts/screens';
+import {SCREENS} from '../../constants';
 import useIssuesContext from '../../hooks/useIssuesContext';
 
 const Stack = createNativeStackNavigator();
@@ -43,7 +43,7 @@ export default function IssueListStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={ISSUE_LIST}
+        name={SCREENS.ISSUE_LIST}
         component={IssueList}
         options={{
           title: 'Ariha - All Issues',
@@ -53,7 +53,7 @@ export default function IssueListStack() {
         }}
       />
       <Stack.Screen
-        name={ISSUE_DETAIL}
+        name={SCREENS.ISSUE_DETAIL}
         component={IssueDetail}
         options={{
           title: 'Ariha - View Issue',
@@ -63,7 +63,7 @@ export default function IssueListStack() {
         }}
       />
       <Stack.Screen
-        name={ISSUE_EDIT}
+        name={SCREENS.ISSUE_EDIT}
         component={IssueUpdate}
         options={{
           title: 'Ariha - Give Issue Update',

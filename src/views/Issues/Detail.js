@@ -11,8 +11,7 @@ import {
   View,
 } from 'react-native';
 import useIssue from '../../hooks/useIssue';
-import {URI_IMAGE} from '../../consts/backend';
-import {CHOICES} from '../../consts/multiplechoice';
+import {URI_IMAGE, ISSUE_FIELDS_CHOICES} from '../../constants';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const styles = StyleSheet.create({
@@ -108,8 +107,14 @@ export default function IssueDetail({navigation, route}) {
       </View>
       <Field label="Description:" value={issue.description} />
       <Field label="Date:" value={issue.date} />
-      <Field label="Severity:" value={CHOICES.severity[issue.severity - 1]} />
-      <Field label="Category:" value={CHOICES.category[issue.category - 1]} />
+      <Field
+        label="Severity:"
+        value={ISSUE_FIELDS_CHOICES.severity[issue.severity - 1]}
+      />
+      <Field
+        label="Category:"
+        value={ISSUE_FIELDS_CHOICES.category[issue.category - 1]}
+      />
       <View style={styles.editButton}>
         <Button
           color="#ec8103"

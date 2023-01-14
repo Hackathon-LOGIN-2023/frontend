@@ -12,9 +12,10 @@ import {
 import {Form, FormItem, Picker} from 'react-native-form-component';
 import {launchImageLibrary} from 'react-native-image-picker';
 
-import {ISSUES_URL, URI_IMAGE} from '../../consts/backend';
-import {createPicker} from '../../consts/multiplechoice';
+import {URI_IMAGE, createPicker} from '../../constants';
 import useIssue from '../../hooks/useIssue';
+
+import {ISSUES_URL} from '@env';
 
 const styles = StyleSheet.create({
   container: {
