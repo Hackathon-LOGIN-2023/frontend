@@ -1,9 +1,10 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   ActivityIndicator,
   Button,
   Dimensions,
   Image,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,6 +13,7 @@ import {
 import useIssue from '../hooks/useIssue';
 import {URI_IMAGE} from '../consts/backend';
 import {CHOICES} from '../consts/multiplechoice';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const styles = StyleSheet.create({
   image: {
@@ -34,31 +36,26 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontSize: 18,
   },
+  votes: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  voteCount: {
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    width: '10%',
+  },
+  editButton: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
 });
 
 export default function IssueDetail({navigation, route}) {
   const {issueId} = route.params;
-  const {data: issue, isLoading, isSuccess} = useIssue({issueId});
+  const {data: issue, isLoading} = useIssue({issueId});
   const [imgRatio, setImgRatio] = useState(0);
   const {width, height} = Dimensions.get('window');
-
-  useLayoutEffect(function () {
-    if (isSuccess) {
-      navigation.setOptions({
-        headerRight: () => (
-          <Button
-            onPress={() =>
-              navigation.navigate('IssueEdit', {
-                issueId: issue._id,
-              })
-            }
-            title="Edit"
-          />
-        ),
-        title: issue.title,
-      });
-    }
-  });
 
   if (isLoading) {
     return (
@@ -74,7 +71,11 @@ export default function IssueDetail({navigation, route}) {
   });
 
   return (
-    <ScrollView style={{backgroundColor: '#FFF', height}}>
+    <ScrollView
+      style={{
+        backgroundColor: '#FFF',
+        height,
+      }}>
       <Text style={styles.title}>{issue.title}</Text>
       {issue.image && (
         <Image
@@ -86,16 +87,36 @@ export default function IssueDetail({navigation, route}) {
           }}
         />
       )}
+      <View style={styles.votes}>
+        <Pressable onPress={() => {}}>
+          <Icon name="arrow-up-bold-box" size={width * 0.15} color="#ec8103" />
+        </Pressable>
+        <Text style={{...styles.label, ...styles.voteCount}}>
+          {issue.votes.length}
+        </Text>
+        <Pressable onPress={() => {}}>
+          <Icon
+            name="arrow-down-bold-box"
+            size={width * 0.15}
+            color="#ec8103"
+          />
+        </Pressable>
+      </View>
       <Field label="Description:" value={issue.description} />
       <Field label="Date:" value={issue.date} />
       <Field label="Severity:" value={CHOICES.severity[issue.severity - 1]} />
       <Field label="Category:" value={CHOICES.category[issue.category - 1]} />
-      {/* <View>
-        <Text>Votes</Text>
-        {issue.votes.map(vote => (
-          <Text key={`vote--${vote._id}`}>{vote._id}</Text>
-        ))}
-      </View> */}
+      <View style={styles.editButton}>
+        <Button
+          color="#ec8103"
+          onPress={() =>
+            navigation.navigate('IssueEdit', {
+              issueId: issue._id,
+            })
+          }
+          title="Have an update?"
+        />
+      </View>
     </ScrollView>
   );
 }

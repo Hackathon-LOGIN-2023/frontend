@@ -25,11 +25,11 @@ function Login(props) {
   return (
     <View>
       <TextInput
-        placeholder="Wrote the password"
+        placeholder="Password"
         value={magicWord}
         onChangeText={setMagicWord}
       />
-      <Button title="Sign In" onPress={handlerSubmit} />
+      <Button title="Sign In" onPress={handlerSubmit} color="#ec8103" />
       {error.length > 0 && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );

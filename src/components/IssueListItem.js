@@ -21,15 +21,23 @@ const styles = StyleSheet.create({
     color: '#000',
     marginLeft: 'auto',
   },
+  label: {
+    fontSize: 20,
+    color: '#000000',
+  },
 });
 
 export default function IssueListItem({issue, onPress}) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
-        {/*{issue.image && <Image source={{uri: issue.image}} style={styles.image} />}*/}
-        {issue.image && <Image source={{uri: `${URI_IMAGE}${issue.image}`}} style={styles.image} />}
-        <Text>{issue.title}</Text>
+        {issue.image && (
+          <Image
+            source={{uri: `${URI_IMAGE}${issue.image}`}}
+            style={styles.image}
+          />
+        )}
+        <Text style={styles.label}>{issue.title}</Text>
         <Icon name="arrow-forward" style={styles.icon} />
       </View>
     </TouchableOpacity>

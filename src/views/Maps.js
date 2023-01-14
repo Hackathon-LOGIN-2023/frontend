@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
@@ -53,7 +52,7 @@ function Map({navigation}) {
             bottom: 20,
             right: 20,
           }}>
-          <IconFA name="circle" size={width * 0.22} color="#EC8103" />
+          <IconFA name="circle" size={width * 0.22} color="#ec8103" />
           <View
             style={{
               position: 'absolute',
@@ -73,9 +72,36 @@ const Stack = createNativeStackNavigator();
 export default function Maps() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Map" component={Map} />
-      <Stack.Screen name="CreateIssue" component={CreateIssue} />
-      <Stack.Screen name="IssueDetail" component={IssueDetail} />
+      <Stack.Screen
+        name="Map"
+        component={Map}
+        options={{
+          title: 'Ariha - Issues Map',
+          headerStyle: {
+            backgroundColor: '#ec8103',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="CreateIssue"
+        component={CreateIssue}
+        options={{
+          title: 'Ariha - Create Issue',
+          headerStyle: {
+            backgroundColor: '#ec8103',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="IssueDetail"
+        component={IssueDetail}
+        options={{
+          title: 'Ariha - View Issue',
+          headerStyle: {
+            backgroundColor: '#ec8103',
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 }
