@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
@@ -73,9 +72,21 @@ const Stack = createNativeStackNavigator();
 export default function Maps() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Map" component={Map} />
-      <Stack.Screen name="CreateIssue" component={CreateIssue} />
-      <Stack.Screen name="IssueDetail" component={IssueDetail} />
+      <Stack.Screen
+        name="Map"
+        component={Map}
+        options={{title: 'Ariha - Issues Map'}}
+      />
+      <Stack.Screen
+        name="CreateIssue"
+        component={CreateIssue}
+        options={{title: 'Ariha - Create Issue'}}
+      />
+      <Stack.Screen
+        name="IssueDetail"
+        component={IssueDetail}
+        options={{title: 'Ariha - View Issue'}}
+      />
     </Stack.Navigator>
   );
 }

@@ -55,7 +55,6 @@ export default function IssueDetail({navigation, route}) {
             title="Edit"
           />
         ),
-        title: issue.title,
       });
     }
   });
@@ -74,7 +73,11 @@ export default function IssueDetail({navigation, route}) {
   });
 
   return (
-    <ScrollView style={{backgroundColor: '#FFF', height}}>
+    <ScrollView
+      style={{
+        backgroundColor: '#FFF',
+        height,
+      }}>
       <Text style={styles.title}>{issue.title}</Text>
       {issue.image && (
         <Image

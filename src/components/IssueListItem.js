@@ -27,8 +27,12 @@ export default function IssueListItem({issue, onPress}) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
-        {/*{issue.image && <Image source={{uri: issue.image}} style={styles.image} />}*/}
-        {issue.image && <Image source={{uri: `${URI_IMAGE}${issue.image}`}} style={styles.image} />}
+        {issue.image && (
+          <Image
+            source={{uri: `${URI_IMAGE}${issue.image}`}}
+            style={styles.image}
+          />
+        )}
         <Text>{issue.title}</Text>
         <Icon name="arrow-forward" style={styles.icon} />
       </View>

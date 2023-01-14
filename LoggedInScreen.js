@@ -16,14 +16,14 @@ export default () => (
   <IssueContextProvider>
     <Tab.Navigator>
       <Tab.Screen
+        options={{headerShown: false}}
         name="IssueTab"
         component={IssueStackScreen}
-        options={{title: 'Home page'}}
       />
       <Tab.Screen
+        options={{headerShown: false}}
         name="MapStack"
         component={MapStack}
-        options={{title: 'Maps page'}}
       />
       <Tab.Screen
         name="LogoutTab"
@@ -37,9 +37,21 @@ export default () => (
 function IssueStackScreen() {
   return (
     <IssueStack.Navigator>
-      <IssueStack.Screen name={ISSUE_LIST} component={Home} />
-      <IssueStack.Screen name={ISSUE_DETAIL} component={IssueDetail} />
-      <IssueStack.Screen name={ISSUE_EDIT} component={IssueEdit} />
+      <IssueStack.Screen
+        name={ISSUE_LIST}
+        component={Home}
+        options={{title: 'Ariha - All Issues'}}
+      />
+      <IssueStack.Screen
+        name={ISSUE_DETAIL}
+        component={IssueDetail}
+        options={{title: 'Ariha - View Issue'}}
+      />
+      <IssueStack.Screen
+        name={ISSUE_EDIT}
+        component={IssueEdit}
+        options={{title: 'Ariha - Edit Issue'}}
+      />
     </IssueStack.Navigator>
   );
 }
