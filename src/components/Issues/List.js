@@ -5,7 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import IssueDetail from './Detail';
 import IssueUpdate from './Update';
-import IssueListItem from '../../components/IssueListItem';
+import IssueListItem from './ListItem';
 import {SCREENS} from '../../constants';
 import {useIssuesContext} from '../../contexts/issues';
 
