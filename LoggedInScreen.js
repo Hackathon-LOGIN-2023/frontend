@@ -21,7 +21,7 @@ export default () => (
         component={IssueStackScreen}
       />
       <Tab.Screen
-        options={{headerShown: false}}
+        options={{headerShown: false, title: 'Issues Map'}}
         name="MapStack"
         component={MapStack}
       />
