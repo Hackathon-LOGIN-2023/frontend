@@ -45,30 +45,17 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     width: '10%',
   },
+  editButton: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
 });
 
 export default function IssueDetail({navigation, route}) {
   const {issueId} = route.params;
-  const {data: issue, isLoading, isSuccess} = useIssue({issueId});
+  const {data: issue, isLoading} = useIssue({issueId});
   const [imgRatio, setImgRatio] = useState(0);
   const {width, height} = Dimensions.get('window');
-
-  useLayoutEffect(function () {
-    if (isSuccess) {
-      navigation.setOptions({
-        headerRight: () => (
-          <Button
-            onPress={() =>
-              navigation.navigate('IssueEdit', {
-                issueId: issue._id,
-              })
-            }
-            title="Edit"
-          />
-        ),
-      });
-    }
-  });
 
   if (isLoading) {
     return (
@@ -119,6 +106,17 @@ export default function IssueDetail({navigation, route}) {
       <Field label="Date:" value={issue.date} />
       <Field label="Severity:" value={CHOICES.severity[issue.severity - 1]} />
       <Field label="Category:" value={CHOICES.category[issue.category - 1]} />
+      <View style={styles.editButton}>
+        <Button
+          color="#EC8103"
+          onPress={() =>
+            navigation.navigate('IssueEdit', {
+              issueId: issue._id,
+            })
+          }
+          title="Have an update?"
+        />
+      </View>
     </ScrollView>
   );
 }
