@@ -5,8 +5,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import IssueList from './Issues/List';
 import MapStack from './MapStack';
-import useAuthContext from '../hooks/useAuthContext';
-import {IssueContextProvider} from '../context/IssueContext';
+import {useAuthContext} from '../contexts/auth';
+import {IssueContextProvider} from '../contexts/issues';
 
 const Tab = createBottomTabNavigator();
 

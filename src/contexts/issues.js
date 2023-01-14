@@ -1,9 +1,8 @@
-import React, {createContext, useCallback, useMemo} from 'react';
+import React, {createContext, useCallback, useContext, useMemo} from 'react';
 import {QueryClient, useQuery} from 'react-query';
 import {ISSUES_URL} from '@env';
 
-const IssuesContext = createContext();
-export default IssuesContext;
+const Context = createContext();
 
 const queryClient = new QueryClient();
 const GET_ISSUES = 'GET_ISSUES';
@@ -48,7 +47,9 @@ export function IssueContextProvider({children}) {
     [isSuccess, isLoading, data, invalidateIssuesListCache],
   );
 
-  return (
-    <IssuesContext.Provider value={value}>{children}</IssuesContext.Provider>
-  );
+  return <Context.Provider value={value}>{children}</Context.Provider>;
+}
+
+export function useIssuesContext() {
+  return useContext(Context);
 }

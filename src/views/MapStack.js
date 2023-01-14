@@ -9,7 +9,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import IssueCreate from './Issues/Create';
 import IssueDetail from './Issues/Detail';
 import IssueUpdate from './Issues/Update';
-import {fetchData} from '../context/IssueContext';
+import {fetchData} from '../contexts/issues';
 
 function Map({navigation}) {
   const {height, width} = Dimensions.get('window');

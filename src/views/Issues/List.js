@@ -7,7 +7,7 @@ import IssueDetail from './Detail';
 import IssueUpdate from './Update';
 import IssueListItem from '../../components/IssueListItem';
 import {SCREENS} from '../../constants';
-import useIssuesContext from '../../hooks/useIssuesContext';
+import {useIssuesContext} from '../../contexts/issues';
 
 const Stack = createNativeStackNavigator();
 

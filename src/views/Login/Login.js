@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
-import useAuthContext from '../../hooks/useAuthContext';
+import {useAuthContext} from '../../contexts/auth';
 
 const styles = StyleSheet.create({
   errorText: {

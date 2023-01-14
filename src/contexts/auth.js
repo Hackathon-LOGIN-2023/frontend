@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {createContext, useCallback, useMemo, useReducer} from 'react';
 import storage from '../services/storage';
 
@@ -8,7 +8,7 @@ export const LOADING = 'LOADING';
 
 const APP_LOGGED_KEY = 'app.logged_key';
 
-const AuthContext = createContext();
+const Context = createContext();
 
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
@@ -61,9 +61,9 @@ export function AuthContextProvider({children}) {
     fetchState();
   }, []);
 
-  return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
-  );
+  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 }
 
-export default AuthContext;
+export function useAuthContext() {
+  return useContext(Context);
+}
