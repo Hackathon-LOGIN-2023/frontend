@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+
+import {useMutation} from 'react-query';
 import {
   ActivityIndicator,
   Button,
@@ -7,12 +9,12 @@ import {
   Text,
   View,
 } from 'react-native';
-import {useMutation} from 'react-query';
 import {Form, FormItem, Picker} from 'react-native-form-component';
-import {createPicker} from '../../consts/multiplechoice';
 import {launchImageLibrary} from 'react-native-image-picker';
-import useIssue from '../../hooks/useIssue';
+
 import {ISSUES_URL, URI_IMAGE} from '../../consts/backend';
+import {createPicker} from '../../consts/multiplechoice';
+import useIssue from '../../hooks/useIssue';
 
 const styles = StyleSheet.create({
   container: {

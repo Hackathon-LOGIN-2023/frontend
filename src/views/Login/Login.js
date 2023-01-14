@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
-import useAuthContext from '../hooks/useAuthContext';
+import useAuthContext from '../../hooks/useAuthContext';
 
 const styles = StyleSheet.create({
   errorText: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function Login(props) {
+function Login() {
   const {login} = useAuthContext();
   const [magicWord, setMagicWord] = useState('');
   const [error, setError] = useState('');

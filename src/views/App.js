@@ -5,7 +5,7 @@ import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
 import MainScreen from './Main';
-import LoggedOutScreen from './LoggedOutScreen';
+import LoggedOutScreen from './Login/LoggedOutScreen';
 import useAuthContext from '../hooks/useAuthContext';
 import {AuthContextProvider, LOADING, LOGGED_IN} from '../context/AuthContext';
 

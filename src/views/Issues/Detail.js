@@ -13,7 +13,7 @@ import {
 import useIssue from '../../hooks/useIssue';
 import {URI_IMAGE} from '../../consts/backend';
 import {CHOICES} from '../../consts/multiplechoice';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const styles = StyleSheet.create({
   image: {
@@ -89,7 +89,7 @@ export default function IssueDetail({navigation, route}) {
       )}
       <View style={styles.votes}>
         <Pressable onPress={() => {}}>
-          <Icon
+          <MaterialCommunityIcons
             name="arrow-down-bold-box"
             size={width * 0.15}
             color="#ec8103"
@@ -99,7 +99,11 @@ export default function IssueDetail({navigation, route}) {
           {issue.votes.length}
         </Text>
         <Pressable onPress={() => {}}>
-          <Icon name="arrow-up-bold-box" size={width * 0.15} color="#ec8103" />
+          <MaterialCommunityIcons
+            name="arrow-up-bold-box"
+            size={width * 0.15}
+            color="#ec8103"
+          />
         </Pressable>
       </View>
       <Field label="Description:" value={issue.description} />

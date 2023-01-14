@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, View} from 'react-native';
+
+import {Dimensions, Pressable, SafeAreaView, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
-import {Dimensions, Pressable} from 'react-native';
-import IconFA from 'react-native-vector-icons/FontAwesome';
-import IconAD from 'react-native-vector-icons/AntDesign';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import CreateIssue from './Issues/Create';
-import {fetchData} from '../context/IssueContext';
+
+import IssueCreate from './Issues/Create';
 import IssueDetail from './Issues/Detail';
+import IssueUpdate from './Issues/Update';
+import {fetchData} from '../context/IssueContext';
 
 function Map({navigation}) {
   const {height, width} = Dimensions.get('window');
@@ -45,21 +47,21 @@ function Map({navigation}) {
           />
         ))}
       </MapView>
-      <Pressable onPress={() => navigation.navigate('CreateIssue')}>
+      <Pressable onPress={() => navigation.navigate('IssueCreate')}>
         <View
           style={{
             position: 'absolute',
             bottom: 20,
             right: 20,
           }}>
-          <IconFA name="circle" size={width * 0.22} color="#ec8103" />
+          <FontAwesome name="circle" size={width * 0.22} color="#ec8103" />
           <View
             style={{
               position: 'absolute',
               top: '20%',
               alignSelf: 'center',
             }}>
-            <IconAD name="plus" size={width * 0.12} color="#fff" />
+            <AntDesign name="plus" size={width * 0.12} color="#fff" />
           </View>
         </View>
       </Pressable>
@@ -69,7 +71,7 @@ function Map({navigation}) {
 
 const Stack = createNativeStackNavigator();
 
-export default function Maps() {
+export default function MapStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -83,8 +85,8 @@ export default function Maps() {
         }}
       />
       <Stack.Screen
-        name="CreateIssue"
-        component={CreateIssue}
+        name="IssueCreate"
+        component={IssueCreate}
         options={{
           title: 'Ariha - Create Issue',
           headerStyle: {
@@ -97,6 +99,16 @@ export default function Maps() {
         component={IssueDetail}
         options={{
           title: 'Ariha - View Issue',
+          headerStyle: {
+            backgroundColor: '#ec8103',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="IssueUpdate"
+        component={IssueUpdate}
+        options={{
+          title: 'Ariha - Give Issue Update',
           headerStyle: {
             backgroundColor: '#ec8103',
           },

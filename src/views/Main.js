@@ -1,17 +1,14 @@
-import Home from './Home';
-import MapStack from './MapStack';
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Logout from './Logout';
-import {IssueContextProvider} from '../context/IssueContext';
-import {createStackNavigator} from '@react-navigation/stack';
-import {ISSUE_DETAIL, ISSUE_EDIT, ISSUE_LIST} from '../consts/screens';
-import IssueDetail from './Issues/Detail';
-import IssueUpdate from './Issues/Update';
+import React, {useEffect} from 'react';
+
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import IssueList from './Issues/List';
+import MapStack from './MapStack';
+import useAuthContext from '../hooks/useAuthContext';
+import {IssueContextProvider} from '../context/IssueContext';
 
 const Tab = createBottomTabNavigator();
-const IssueStack = createStackNavigator();
 
 export default () => (
   <IssueContextProvider>
@@ -34,7 +31,7 @@ export default () => (
           ),
         }}
         name="IssueTab"
-        component={IssueStackScreen}
+        component={IssueList}
       />
       <Tab.Screen
         name="MapStack"
@@ -72,39 +69,12 @@ export default () => (
   </IssueContextProvider>
 );
 
-function IssueStackScreen() {
-  return (
-    <IssueStack.Navigator>
-      <IssueStack.Screen
-        name={ISSUE_LIST}
-        component={Home}
-        options={{
-          title: 'Ariha - All Issues',
-          headerStyle: {
-            backgroundColor: '#ec8103',
-          },
-        }}
-      />
-      <IssueStack.Screen
-        name={ISSUE_DETAIL}
-        component={IssueDetail}
-        options={{
-          title: 'Ariha - View Issue',
-          headerStyle: {
-            backgroundColor: '#ec8103',
-          },
-        }}
-      />
-      <IssueStack.Screen
-        name={ISSUE_EDIT}
-        component={IssueUpdate}
-        options={{
-          title: 'Ariha - Edit Issue',
-          headerStyle: {
-            backgroundColor: '#ec8103',
-          },
-        }}
-      />
-    </IssueStack.Navigator>
-  );
+function Logout() {
+  const {logout} = useAuthContext();
+
+  useEffect(function () {
+    logout();
+  });
+
+  return null;
 }
