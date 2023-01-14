@@ -4,6 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import IssueList from './Issues/List';
+import LoggedOutScreen from './Login/LoggedOutScreen';
 import MapStack from './MapStack';
 import {useAuthContext} from '../contexts/auth';
 import {IssueContextProvider} from '../contexts/issues';
@@ -76,5 +77,5 @@ function Logout() {
     logout();
   });
 
-  return null;
+  return <LoggedOutScreen />;
 }
