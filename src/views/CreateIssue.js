@@ -3,8 +3,8 @@ import {Form, FormItem, Picker} from 'react-native-form-component';
 import {createPicker} from '../consts/multiplechoice';
 
 export default function CreateIssue({navigation, route}) {
-  const [title, setTitle] = useState('Title');
-  const [desc, setDesc] = useState('Description');
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
   const [severity, setSeverity] = useState(0);
   const [category, setCategory] = useState(0);
 
@@ -14,11 +14,14 @@ export default function CreateIssue({navigation, route}) {
         console.log(
           `Title: ${title}\nDescription: ${desc}\nSeverity: ${severity}\nCategory: ${category}\n`,
         )
-      }>
+      }
+      buttonText="Create"
+      buttonStyle={{backgroundColor: '#ec8103'}}>
       <FormItem
         label="Title"
         value={title}
         onChangeText={setTitle}
+        placeholder="Title"
         isRequired
         asterik
       />
@@ -26,6 +29,7 @@ export default function CreateIssue({navigation, route}) {
         label="Description"
         value={desc}
         onChangeText={setDesc}
+        placeholder="Description"
         textArea
         isRequired
         asterik
