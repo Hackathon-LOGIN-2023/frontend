@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import SwitchAuthScreen from './SwitchAuthScreen';
-import {AuthContextProvider} from './src/context/AuthContext';
+import {AuthContextProvider} from '../context/AuthContext';
 
 const queryClient = new QueryClient();
 

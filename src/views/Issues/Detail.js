@@ -10,9 +10,9 @@ import {
   Text,
   View,
 } from 'react-native';
-import useIssue from '../hooks/useIssue';
-import {URI_IMAGE} from '../consts/backend';
-import {CHOICES} from '../consts/multiplechoice';
+import useIssue from '../../hooks/useIssue';
+import {URI_IMAGE} from '../../consts/backend';
+import {CHOICES} from '../../consts/multiplechoice';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const styles = StyleSheet.create({
@@ -89,17 +89,17 @@ export default function IssueDetail({navigation, route}) {
       )}
       <View style={styles.votes}>
         <Pressable onPress={() => {}}>
-          <Icon name="arrow-up-bold-box" size={width * 0.15} color="#ec8103" />
-        </Pressable>
-        <Text style={{...styles.label, ...styles.voteCount}}>
-          {issue.votes.length}
-        </Text>
-        <Pressable onPress={() => {}}>
           <Icon
             name="arrow-down-bold-box"
             size={width * 0.15}
             color="#ec8103"
           />
+        </Pressable>
+        <Text style={{...styles.label, ...styles.voteCount}}>
+          {issue.votes.length}
+        </Text>
+        <Pressable onPress={() => {}}>
+          <Icon name="arrow-up-bold-box" size={width * 0.15} color="#ec8103" />
         </Pressable>
       </View>
       <Field label="Description:" value={issue.description} />
@@ -110,7 +110,7 @@ export default function IssueDetail({navigation, route}) {
         <Button
           color="#ec8103"
           onPress={() =>
-            navigation.navigate('IssueEdit', {
+            navigation.navigate('IssueUpdate', {
               issueId: issue._id,
             })
           }

@@ -1,8 +1,8 @@
 import React from 'react';
-import useAuthContext from './src/hooks/useAuthContext';
-import {LOADING, LOGGED_IN} from './src/context/AuthContext';
+import useAuthContext from '../hooks/useAuthContext';
+import {LOADING, LOGGED_IN} from '../context/AuthContext';
 import {Text, View} from 'react-native';
-import LoggedInScreen from './LoggedInScreen';
+import MainScreen from './Main';
 import LoggedOutScreen from './LoggedOutScreen';
 
 function SwitchAuthScreen(props) {
@@ -15,7 +15,7 @@ function SwitchAuthScreen(props) {
     );
   }
   if (loggedState === LOGGED_IN) {
-    return <LoggedInScreen />;
+    return <MainScreen />;
   }
   return <LoggedOutScreen />;
 }

@@ -1,13 +1,13 @@
-import Home from './src/views/Home';
-import MapStack from './src/views/Maps';
+import Home from './Home';
+import MapStack from './Maps';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Logout from './src/views/Logout';
-import {IssueContextProvider} from './src/context/IssueContext';
+import Logout from './Logout';
+import {IssueContextProvider} from '../context/IssueContext';
 import {createStackNavigator} from '@react-navigation/stack';
-import {ISSUE_DETAIL, ISSUE_EDIT, ISSUE_LIST} from './src/consts/screens';
-import IssueDetail from './src/views/IssueDetail';
-import IssueEdit from './src/views/IssueEdit';
+import {ISSUE_DETAIL, ISSUE_EDIT, ISSUE_LIST} from '../consts/screens';
+import IssueDetail from './Issues/Detail';
+import IssueUpdate from './Issues/Update';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
@@ -97,7 +97,7 @@ function IssueStackScreen() {
       />
       <IssueStack.Screen
         name={ISSUE_EDIT}
-        component={IssueEdit}
+        component={IssueUpdate}
         options={{
           title: 'Ariha - Edit Issue',
           headerStyle: {

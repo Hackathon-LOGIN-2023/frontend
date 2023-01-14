@@ -5,9 +5,9 @@ import {Dimensions, Pressable} from 'react-native';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import IconAD from 'react-native-vector-icons/AntDesign';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import CreateIssue from './CreateIssue';
+import CreateIssue from './Issues/Create';
 import {fetchData} from '../context/IssueContext';
-import IssueDetail from './IssueDetail';
+import IssueDetail from './Issues/Detail';
 
 function Map({navigation}) {
   const {height, width} = Dimensions.get('window');
