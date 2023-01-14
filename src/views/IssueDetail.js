@@ -89,7 +89,7 @@ export default function IssueDetail({navigation, route}) {
       )}
       <View style={styles.votes}>
         <Pressable onPress={() => {}}>
-          <Icon name="arrow-up-bold-box" size={width * 0.15} color="#EC8103" />
+          <Icon name="arrow-up-bold-box" size={width * 0.15} color="#ec8103" />
         </Pressable>
         <Text style={{...styles.label, ...styles.voteCount}}>
           {issue.votes.length}
@@ -98,7 +98,7 @@ export default function IssueDetail({navigation, route}) {
           <Icon
             name="arrow-down-bold-box"
             size={width * 0.15}
-            color="#EC8103"
+            color="#ec8103"
           />
         </Pressable>
       </View>
@@ -108,7 +108,7 @@ export default function IssueDetail({navigation, route}) {
       <Field label="Category:" value={CHOICES.category[issue.category - 1]} />
       <View style={styles.editButton}>
         <Button
-          color="#EC8103"
+          color="#ec8103"
           onPress={() =>
             navigation.navigate('IssueEdit', {
               issueId: issue._id,

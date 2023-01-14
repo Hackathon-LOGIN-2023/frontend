@@ -52,7 +52,7 @@ function Map({navigation}) {
             bottom: 20,
             right: 20,
           }}>
-          <IconFA name="circle" size={width * 0.22} color="#EC8103" />
+          <IconFA name="circle" size={width * 0.22} color="#ec8103" />
           <View
             style={{
               position: 'absolute',
@@ -75,17 +75,32 @@ export default function Maps() {
       <Stack.Screen
         name="Map"
         component={Map}
-        options={{title: 'Ariha - Issues Map'}}
+        options={{
+          title: 'Ariha - Issues Map',
+          headerStyle: {
+            backgroundColor: '#ec8103',
+          },
+        }}
       />
       <Stack.Screen
         name="CreateIssue"
         component={CreateIssue}
-        options={{title: 'Ariha - Create Issue'}}
+        options={{
+          title: 'Ariha - Create Issue',
+          headerStyle: {
+            backgroundColor: '#ec8103',
+          },
+        }}
       />
       <Stack.Screen
         name="IssueDetail"
         component={IssueDetail}
-        options={{title: 'Ariha - View Issue'}}
+        options={{
+          title: 'Ariha - View Issue',
+          headerStyle: {
+            backgroundColor: '#ec8103',
+          },
+        }}
       />
     </Stack.Navigator>
   );
