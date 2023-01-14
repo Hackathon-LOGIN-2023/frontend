@@ -4,6 +4,7 @@ import {
   Button,
   Dimensions,
   Image,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,6 +13,7 @@ import {
 import useIssue from '../hooks/useIssue';
 import {URI_IMAGE} from '../consts/backend';
 import {CHOICES} from '../consts/multiplechoice';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const styles = StyleSheet.create({
   image: {
@@ -33,6 +35,15 @@ const styles = StyleSheet.create({
   value: {
     color: '#000000',
     fontSize: 18,
+  },
+  votes: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  voteCount: {
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    width: '10%',
   },
 });
 
@@ -89,16 +100,25 @@ export default function IssueDetail({navigation, route}) {
           }}
         />
       )}
+      <View style={styles.votes}>
+        <Pressable onPress={() => {}}>
+          <Icon name="arrow-up-bold-box" size={width * 0.15} color="#EC8103" />
+        </Pressable>
+        <Text style={{...styles.label, ...styles.voteCount}}>
+          {issue.votes.length}
+        </Text>
+        <Pressable onPress={() => {}}>
+          <Icon
+            name="arrow-down-bold-box"
+            size={width * 0.15}
+            color="#EC8103"
+          />
+        </Pressable>
+      </View>
       <Field label="Description:" value={issue.description} />
       <Field label="Date:" value={issue.date} />
       <Field label="Severity:" value={CHOICES.severity[issue.severity - 1]} />
       <Field label="Category:" value={CHOICES.category[issue.category - 1]} />
-      {/* <View>
-        <Text>Votes</Text>
-        {issue.votes.map(vote => (
-          <Text key={`vote--${vote._id}`}>{vote._id}</Text>
-        ))}
-      </View> */}
     </ScrollView>
   );
 }

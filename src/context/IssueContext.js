@@ -9,8 +9,24 @@ const queryClient = new QueryClient();
 const GET_ISSUES = 'GET_ISSUES';
 
 export async function fetchData() {
-  console.log('Trying to connect');
+  console.log('Getting all issues');
   const response = await fetch(`${ISSUES_URL}/issues/`);
+  const json = await response.json();
+  return json;
+}
+
+export async function vote(userId, issueId, upOrDown) {
+  console.log('Voting for issue');
+  const body = {
+    id: issueId,
+    userId,
+    value: upOrDown === 'up' ? 1 : -1,
+  };
+  const response = await fetch(`${ISSUES_URL}/issues/vote`, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {'Content-Type': 'application/json'},
+  });
   const json = await response.json();
   return json;
 }
