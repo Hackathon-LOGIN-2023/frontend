@@ -109,19 +109,17 @@ export default function BookEdit({route}) {
         buttonText="Give Update"
         buttonStyle={{backgroundColor: '#ec8103'}}>
         <View style={styles.formRowOne}>
-          <View>
-            {image && (
-              <Image
-                source={{uri: `${URI_IMAGE}${image}`}}
-                style={styles.image}
-              />
-            )}
-            <Button
-              onPress={launchImagePicker}
-              title="Select Image"
-              color="#ec8103"
+          {image && (
+            <Image
+              source={{uri: `${URI_IMAGE}${image}`}}
+              style={styles.image}
             />
-          </View>
+          )}
+          <Button
+            onPress={launchImagePicker}
+            title="Select Image"
+            color="#ec8103"
+          />
         </View>
         <View>
           <FormItem
