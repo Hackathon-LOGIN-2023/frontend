@@ -95,7 +95,7 @@ export default function IssueDetail({navigation, route}) {
           />
         </Pressable>
         <Text style={{...styles.label, ...styles.voteCount}}>
-          {issue.votes.length}
+          {issue.votes.reduce((acc, vote) => acc + vote.value, 0)}
         </Text>
         <Pressable onPress={() => {}}>
           <MaterialCommunityIcons
