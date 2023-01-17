@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {useAuthContext} from '../../contexts/auth';
 import {Form, FormItem} from 'react-native-form-component';
-import {SCREENS} from '../../constants';
 import {useMutation} from 'react-query';
 import {USER_URL} from '@env';
+import {SCREENS} from '../../constants';
 
 const styles = StyleSheet.create({
   errorText: {
     marginTop: 16,
     color: '#c00',
+  },
+  successText: {
+    marginTop: 16,
+    color: '#3dcc00',
   },
   container: {
     padding: 16,
@@ -21,7 +24,7 @@ const styles = StyleSheet.create({
 });
 
 async function postData({data}) {
-  const response = await fetch(`${USER_URL}/login`, {
+  const response = await fetch(`${USER_URL}/register`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -33,37 +36,48 @@ async function postData({data}) {
   return json;
 }
 
-function Login({navigation}) {
-  const {login} = useAuthContext();
+function CreateUser({navigation}) {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confPassword, setConfPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const {mutate, isPosting, isSuccess} = useMutation(postData);
 
   async function handleSubmit() {
-    let dataCheck = {
+    let data = {
+      name,
       email,
       password,
+      confPassword,
     };
-    await mutate({dataCheck});
+    await mutate({data});
     if (isSuccess) {
-      login();
+      setSuccess('User created');
+      setError('');
+      navigation.navigate(SCREENS.LOGIN);
     } else {
-      setError('Introduce the correct password');
+      setSuccess('');
+      setError('Error creating user');
     }
-  }
-
-  function createUser() {
-    navigation.navigate(SCREENS.CREATE_USER);
   }
 
   return (
     <View style={styles.container}>
       <Form
         onButtonPress={handleSubmit}
-        buttonText="Sign In"
+        buttonText="Create User"
         buttonStyle={{backgroundColor: '#ec8103'}}>
         <View>
+          <FormItem
+            label="Name"
+            value={name}
+            onChangeText={setName}
+            placeholder="Name"
+            isRequired
+            asterik
+          />
           <FormItem
             label="Email"
             value={email}
@@ -80,18 +94,23 @@ function Login({navigation}) {
             isRequired
             asterik
           />
-          <View style={styles.formRowOne}>
-            <Text>Don't have a user, </Text>
-            <Text style={{color: 'blue'}} onPress={() => createUser()}>
-              create user
-            </Text>
-          </View>
+          <FormItem
+            label="Confirm Password"
+            value={confPassword}
+            onChangeText={setConfPassword}
+            placeholder="Confirm Password"
+            isRequired
+            asterik
+          />
         </View>
-        {isPosting && <Text>Editing issue...</Text>}
+        {isPosting && <Text>Creating User...</Text>}
         {error.length > 0 && <Text style={styles.errorText}>{error}</Text>}
+        {success.length > 0 && (
+          <Text style={styles.successText}>{success}</Text>
+        )}
       </Form>
     </View>
   );
 }
 
-export default Login;
+export default CreateUser;
