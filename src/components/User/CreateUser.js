@@ -46,6 +46,7 @@ function CreateUser({navigation}) {
   const {mutate, isPosting, isSuccess} = useMutation(postData);
 
   async function handleSubmit() {
+    console.log('Handling submit create user');
     let data = {
       name,
       email,

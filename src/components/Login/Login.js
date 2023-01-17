@@ -29,7 +29,7 @@ async function postData({data}) {
     },
   });
   const json = await response.json();
-  console.log(json);
+  console.log('User Creation result: ', json);
   return json;
 }
 
