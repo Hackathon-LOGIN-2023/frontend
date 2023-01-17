@@ -25,4 +25,5 @@ export const SCREENS = {
   ISSUE_LIST: 'IssueList',
   ISSUE_DETAIL: 'IssueDetail',
   ISSUE_EDIT: 'IssueUpdate',
+  CREATE_USER: 'CreateUser',
 };
