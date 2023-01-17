@@ -4,7 +4,9 @@ import {Dimensions, Pressable, SafeAreaView, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import GetLocation from 'react-native-get-location';
 
 import IssueCreate from './Issues/Create';
 import IssueDetail from './Issues/Detail';
@@ -14,6 +16,8 @@ import {fetchData} from '../contexts/issues';
 function Map({navigation}) {
   const {height, width} = Dimensions.get('window');
   const [issues, setIssues] = useState([]);
+  const [latitude, setLatitude] = useState(47.282332);
+  const [longitude, setLongitude] = useState(-1.521142);
 
   useEffect(() => {
     const f = async () => {
@@ -22,16 +26,43 @@ function Map({navigation}) {
     f();
   }, []);
 
+  let showsUserLocation = true;
+
+  check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then(resCheck => {
+    if (resCheck !== RESULTS.GRANTED) {
+      request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then(resRequest => {
+        if (resCheck !== RESULTS.GRANTED) {
+          showsUserLocation = false;
+          console.log('Not displaying user location', resRequest);
+        }
+      });
+    }
+  });
+
+  GetLocation.getCurrentPosition({
+    enableHighAccuracy: true,
+    timeout: 15000,
+  })
+    .then(location => {
+      setLatitude(location.latitude);
+      setLongitude(location.longitude);
+    })
+    .catch(error => {
+      const {code, message} = error;
+      console.log(code, message);
+    });
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <MapView
         region={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
+          latitude,
+          longitude,
+          latitudeDelta: 0.0722,
           longitudeDelta: 0.0421,
         }}
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+        showsUserLocation={showsUserLocation}
         style={{
           flex: 1,
           height: height,
