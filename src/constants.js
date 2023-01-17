@@ -9,6 +9,7 @@ export const ISSUE_FIELDS_CHOICES = {
     'Traffic',
     'Public Property Damage',
     'Public Transport',
+    'Sewage',
     'Other',
   ],
 };
