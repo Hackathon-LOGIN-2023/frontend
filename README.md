@@ -12,6 +12,9 @@ IMT Atlantique - TAF LOGIN* - UE E Hackathon
 
 ## Application Mobile
 
+<img src="assets/ariha_list.jpeg" height="500">
+<img src="assets/ariha_map.jpeg" height="500">
+
 Basé sur le framework React Native, ce projet est configuré pour fonctionner uniquement comme une **application Android**.
 
 ### Prérequis
