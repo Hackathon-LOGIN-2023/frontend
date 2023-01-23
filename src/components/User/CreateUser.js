@@ -1,3 +1,10 @@
+/**
+ * CreateUser component.
+ *
+ * Component contains form that gathers information sent to the Users Service
+ * for user creation.
+ */
+
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Form, FormItem} from 'react-native-form-component';

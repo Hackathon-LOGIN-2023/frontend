@@ -1,3 +1,9 @@
+/**
+ * Update Issue component.
+ *
+ * Page where user gives an update to an Issue.
+ */
+
 import React, {useState} from 'react';
 
 import {useMutation} from 'react-query';

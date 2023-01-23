@@ -1,3 +1,9 @@
+/**
+ * Main component.
+ *
+ * This component renders the main pages available to the user after the app is open.
+ */
+
 import React, {useEffect} from 'react';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

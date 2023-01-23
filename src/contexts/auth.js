@@ -1,3 +1,9 @@
+/**
+ * Authentication context.
+ *
+ * Manage login status and other requests to the Authentication Service.
+ */
+
 import React, {useContext, useEffect} from 'react';
 import {createContext, useCallback, useMemo, useReducer} from 'react';
 import storage from '../services/storage';

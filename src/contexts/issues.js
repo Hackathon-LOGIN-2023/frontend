@@ -1,3 +1,9 @@
+/**
+ * Issues context.
+ *
+ * Used to load issues, manage status of loading and other requests to the Issues Service.
+ */
+
 import React, {createContext, useCallback, useContext, useMemo} from 'react';
 import {QueryClient, useQuery} from 'react-query';
 import {ISSUES_URL} from '@env';

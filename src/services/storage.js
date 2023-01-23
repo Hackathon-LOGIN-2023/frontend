@@ -1,3 +1,8 @@
+/**
+ * Key-Value storage used for different parts of the code. Used to manage many
+ * contexts of the application.
+ */
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const storage = {

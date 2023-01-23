@@ -1,3 +1,7 @@
+/**
+ * Management of application permissions.
+ */
+
 import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 const REQUIRED = [

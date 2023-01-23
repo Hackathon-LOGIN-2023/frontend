@@ -1,3 +1,10 @@
+/**
+ * MapStack component.
+ *
+ * This component handles the stack of pages that are loaded starting at the
+ * main map view and all its sub-pages.
+ */
+
 import React, {useEffect, useState} from 'react';
 
 import {Dimensions, Pressable, SafeAreaView, View} from 'react-native';

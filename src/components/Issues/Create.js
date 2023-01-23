@@ -1,3 +1,9 @@
+/**
+ * Create Issue component.
+ *
+ * Page where user creates a new Issue.
+ */
+
 import React, {useState} from 'react';
 import {useMutation} from 'react-query';
 

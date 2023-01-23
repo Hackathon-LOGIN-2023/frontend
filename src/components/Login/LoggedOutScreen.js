@@ -1,3 +1,9 @@
+/**
+ * LoggedOutScreen component.
+ *
+ * Stack of pages that a logged out user sees.
+ */
+
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Login from './Login';

@@ -1,3 +1,9 @@
+/**
+ * Detail Issue component.
+ *
+ * Page where user views the details of an Issue.
+ */
+
 import React, {useState} from 'react';
 import {
   ActivityIndicator,

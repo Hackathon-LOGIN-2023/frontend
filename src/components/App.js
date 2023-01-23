@@ -1,3 +1,9 @@
+/**
+ * App component.
+ *
+ * This is first component that renders the whole application and manages the whole application state.
+ */
+
 import React from 'react';
 
 import {QueryClient, QueryClientProvider} from 'react-query';

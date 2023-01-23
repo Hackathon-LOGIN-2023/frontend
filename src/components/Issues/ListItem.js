@@ -1,3 +1,9 @@
+/**
+ * ListItem Issue component.
+ *
+ * Component that renders one preview of an Issue. To be used inside list of Issues.
+ */
+
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';

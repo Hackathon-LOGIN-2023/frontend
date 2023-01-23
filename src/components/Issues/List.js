@@ -1,3 +1,9 @@
+/**
+ * List Issue component.
+ *
+ * Page where user views all Issues.
+ */
+
 import React from 'react';
 
 import {FlatList, Text, View} from 'react-native';
