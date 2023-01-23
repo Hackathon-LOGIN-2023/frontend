@@ -9,6 +9,7 @@ const GET_ISSUES = 'GET_ISSUES';
 
 export async function fetchData() {
   console.log('Getting all issues');
+  console.log(`${ISSUES_URL}/issues/`);
   const response = await fetch(`${ISSUES_URL}/issues/`);
   const json = await response.json();
   return json;
